@@ -100,7 +100,7 @@
 
     <View
         android:id="@+id/view2"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="1dp"
         android:layout_marginStart="32dp"
         android:background="@android:color/darker_gray"
@@ -111,26 +111,35 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginStart="16dp"
-        app:srcCompat="@drawable/ic_logo_github"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintEnd_toStartOf="@+id/appCompatImageView2"
         app:layout_constraintStart_toEndOf="@+id/view2"
-        app:layout_constraintTop_toBottomOf="@+id/btnHireMe" />
+        app:layout_constraintTop_toBottomOf="@+id/btnHireMe"
+        app:srcCompat="@drawable/ic_logo_github" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView2"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="16dp"
-        app:srcCompat="@drawable/ic_logo_linkedin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnHireMe"
+        app:layout_constraintStart_toStartOf="@+id/btnHireMe"
+        app:layout_constraintTop_toBottomOf="@+id/btnHireMe"
+        app:srcCompat="@drawable/ic_logo_whatsapp" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/view"
-        app:layout_constraintStart_toStartOf="@+id/guideline2"
-        app:layout_constraintTop_toBottomOf="@+id/btnHireMe" />
+        app:layout_constraintStart_toEndOf="@+id/appCompatImageView2"
+        app:layout_constraintTop_toBottomOf="@+id/btnHireMe"
+        app:srcCompat="@drawable/ic_logo_linkedin" />
 
     <View
         android:id="@+id/view"
-        android:layout_width="100dp"
+        android:layout_width="80dp"
         android:layout_height="1dp"
         android:layout_marginEnd="32dp"
         android:background="@android:color/darker_gray"
@@ -144,6 +153,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
+        app:layout_constraintGuide_percent="0.92" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
