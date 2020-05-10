@@ -6,7 +6,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDarkColor"
+    android:background="@color/primaryColor"
     tools:context=".architecture.view.fragments.IntroductionFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -17,31 +17,20 @@
         app:layout_constraintGuide_percent="0.55" />
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="@dimen/circle_image_size"
-        android:layout_height="@dimen/circle_image_size"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:cardBackgroundColor="@color/primaryDarkColor"
         app:cardCornerRadius="130dp">
-        <ImageView
-            android:layout_height="@dimen/circle_image_size"
-            android:layout_width="@dimen/circle_image_size"
-            android:padding="10dp"
-            android:id="@+id/circleImage"
-            android:src="@drawable/ovidiu"
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imageIntroduction"
+            android:layout_height="260dp"
+            android:layout_width="260dp"
+            android:padding="5dp"
             android:scaleType="centerCrop"/>
     </com.google.android.material.card.MaterialCardView>
-
-    <!--<androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        android:src="@drawable/ovidiu"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />-->
 
     <TextView
         android:id="@+id/textView"

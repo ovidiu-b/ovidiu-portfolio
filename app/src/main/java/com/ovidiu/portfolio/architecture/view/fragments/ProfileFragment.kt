@@ -1,26 +1,20 @@
 package com.ovidiu.portfolio.architecture.view.fragments
 
-import android.graphics.Bitmap
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.TransformationUtils.centerCrop
-import com.bumptech.glide.request.BaseRequestOptions
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.BitmapImageViewTarget
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.AboutMeFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.ExperienceFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.StudiesFragmentTab
 import com.ovidiu.portfolio.databinding.FragmentProfileBinding
-
 
 class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentProfileBinding {
