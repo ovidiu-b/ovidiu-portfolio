@@ -5,6 +5,10 @@
     <!-- Paddings -->
     <dimen name="padding_body">20dp</dimen>
 
+    <!-- Margins -->
+    <dimen name="space_between_1">15dp</dimen>
+    <dimen name="space_between_2">13dp</dimen>
+
     <!-- Typograpy sizes -->
     <dimen name="header_1">36sp</dimen>
     <dimen name="header_2">24sp</dimen>
@@ -18,4 +22,5 @@
     <dimen name="subtitle_3">15sp</dimen>
 
     <dimen name="body_text">14sp</dimen>
+
 </resources>

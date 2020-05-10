@@ -9,6 +9,7 @@
 
         <item name="fontFamily">@font/ubuntu_medium</item>
         <item name="android:textSize">@dimen/body_text</item>
+        <item name="android:lineSpacingExtra">7dp</item>
     </style>
 
     <style name="TextLight">

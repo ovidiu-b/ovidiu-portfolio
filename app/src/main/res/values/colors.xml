@@ -1,8 +1,12 @@
 <!--?xml version="1.0" encoding="UTF-8"?-->
 <resources>
-  <color name="primaryColor">#3e4651</color>
+  <!--<color name="primaryColor">#3e4651</color>
   <color name="primaryDarkColor">#171f29</color>
-<!--  <color name="primaryDarkColor">#000000</color>-->
+  <color name="primaryTextColorLight">#ffffff</color>
+  <color name="primaryTextColorDark">@color/primaryColor</color>-->
+
+  <color name="primaryColor">#283593</color>
+  <color name="primaryDarkColor">#001064</color>
   <color name="primaryTextColorLight">#ffffff</color>
   <color name="primaryTextColorDark">@color/primaryColor</color>
 </resources>
