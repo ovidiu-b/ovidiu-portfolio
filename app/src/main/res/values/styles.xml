@@ -16,4 +16,9 @@
         <item name="android:textColor">@color/primaryTextColorLight</item>
     </style>
 
+    <style name="Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <!-- color used by navigation icon and overflow icon -->
+        <item name="colorOnPrimary">@android:color/white</item>
+    </style>
+
 </resources>

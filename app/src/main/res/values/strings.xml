@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Ovidiu-Portfolio</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="call_me">Llámame</string>
+    <string name="github">Github</string>
+    <string name="linkedin">LinkedIn</string>
+    <string name="mail_me">Envíame un email</string>
 </resources>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/callMe"
+        android:icon="@drawable/ic_phone_green_24dp"
+        android:title="@string/call_me"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/mailMe"
+        android:icon="@drawable/ic_email_red_24dp"
+        android:title="@string/mail_me"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/github"
+        android:icon="@drawable/ic_logo_github_original"
+        android:title="@string/github"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/linkedin"
+        android:icon="@drawable/ic_logo_linkedin_original"
+        android:title="@string/linkedin"
+        app:showAsAction="never" />
+</menu>

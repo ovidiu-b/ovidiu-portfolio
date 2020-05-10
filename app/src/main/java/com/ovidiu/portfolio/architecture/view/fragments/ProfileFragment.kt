@@ -1,9 +1,9 @@
 package com.ovidiu.portfolio.architecture.view.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.view.menu.MenuBuilder
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
@@ -21,6 +21,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         return FragmentProfileBinding.inflate(inflater, container, false)
     }
 
+    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -28,6 +29,10 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
         val viewPagerAdapter = ProfileFragmentPageAdapter(activity?.supportFragmentManager!!)
+
+        if(topAppBar.menu is MenuBuilder) {
+            (topAppBar.menu as MenuBuilder).setOptionalIconsVisible(true)
+        }
 
         topAppBar.setNavigationOnClickListener {
             Navigation.findNavController(view).navigateUp()
