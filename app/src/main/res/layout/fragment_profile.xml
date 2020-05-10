@@ -29,7 +29,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:textSize="17sp"
+                android:theme="@style/TextLight"
+                android:textSize="@dimen/title_toolbar"
                 android:text="PERFIL" />
 
         </com.google.android.material.appbar.MaterialToolbar>
@@ -44,11 +45,9 @@
                 android:id="@+id/imageProfile"
                 android:layout_width="115dp"
                 android:layout_height="115dp"
-                android:padding="5dp"/>
+                android:padding="@dimen/circle_image_border"/>
 
         </com.google.android.material.card.MaterialCardView>
-
-
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,14 +60,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="22sp"
+                android:theme="@style/TextLight"
+                android:textSize="@dimen/title_1"
                 android:text="Ovidiu Balaban"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:textSize="14sp"
+                android:textSize="@dimen/subtitle_2"
+                android:theme="@style/TextLight"
                 android:layout_gravity="center"
                 android:text="Programador Android"/>
 

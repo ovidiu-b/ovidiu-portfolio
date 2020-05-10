@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/primaryColor</item>
 
         <item name="fontFamily">@font/ubuntu_medium</item>
+        <item name="android:textSize">@dimen/body_text</item>
+    </style>
+
+    <style name="TextLight">
         <item name="android:textColor">@color/primaryTextColorLight</item>
     </style>
 

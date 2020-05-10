@@ -28,15 +28,16 @@
             android:id="@+id/imageIntroduction"
             android:layout_height="260dp"
             android:layout_width="260dp"
-            android:padding="5dp"/>
+            android:padding="@dimen/circle_image_border"/>
     </com.google.android.material.card.MaterialCardView>
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:theme="@style/TextLight"
         android:text="Hola, mi nombre es"
-        android:textSize="20sp"
+        android:textSize="@dimen/header_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline" />
@@ -46,9 +47,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:theme="@style/TextLight"
         android:gravity="center_horizontal|center_vertical"
         android:text="Ovidiu Balaban"
-        android:textSize="36sp"
+        android:textSize="@dimen/header_1"
         app:layout_constraintEnd_toEndOf="@+id/textView"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
@@ -58,8 +60,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:theme="@style/TextLight"
         android:text="Programador Android"
-        android:textSize="17sp"
+        android:textSize="@dimen/subtitle_1"
         app:layout_constraintEnd_toEndOf="@+id/textView2"
         app:layout_constraintStart_toStartOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
@@ -81,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="o"
+        android:theme="@style/TextLight"
         app:layout_constraintEnd_toEndOf="@+id/btnKnowMoreAboutMe"
         app:layout_constraintStart_toStartOf="@+id/btnKnowMoreAboutMe"
         app:layout_constraintTop_toBottomOf="@+id/btnKnowMoreAboutMe" />

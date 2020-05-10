@@ -1,4 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    
+    <dimen name="circle_image_border">5dp</dimen>
+
+    <!-- Paddings -->
+    <dimen name="padding_body">20dp</dimen>
+
+    <!-- Typograpy sizes -->
+    <dimen name="header_1">36sp</dimen>
+    <dimen name="header_2">24sp</dimen>
+
+    <dimen name="title_1">22sp</dimen>
+    <dimen name="title_2">21sp</dimen>
+    <dimen name="title_toolbar">17sp</dimen>
+
+    <dimen name="subtitle_1">20sp</dimen>
+    <dimen name="subtitle_2">16sp</dimen>
+    <dimen name="subtitle_3">15sp</dimen>
+
+    <dimen name="body_text">14sp</dimen>
 </resources>
