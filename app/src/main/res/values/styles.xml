@@ -21,4 +21,15 @@
         <item name="colorOnPrimary">@android:color/white</item>
     </style>
 
+    <style name="ListWithScrollbarTheme">
+        <item name="android:scrollbars">vertical</item>
+        <item name="android:scrollbarThumbVertical">@drawable/scrollbar_recyclerview_color</item>
+        <item name="android:scrollbarSize">3dp</item>
+    </style>
+
+    <style name="ViewWithRippleEfectTheme">
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+    </style>
 </resources>

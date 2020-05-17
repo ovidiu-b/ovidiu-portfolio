@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="isFirstItem"
+            type="Boolean" />
+
+        <variable
+            name="isLastItem"
+            type="Boolean" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        style="@style/ViewWithRippleEfectTheme"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginStart="@dimen/space_between_1"
+            android:layout_marginEnd="@dimen/space_between_1">
+
+            <View
+                android:id="@+id/view5"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/primaryColor"
+                android:visibility="@{isFirstItem ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/circle_point"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="1dp"
+                android:layout_height="0dp"
+                android:background="@color/primaryColor"
+                android:visibility="@{isLastItem ? View.GONE : View.VISIBLE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="@+id/view3"
+                app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:maxLines="1"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/subtitle_2"
+                android:text="NOMBRE DE LA EMPRESA"
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/view3"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                tools:text="TITLE" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:maxLines="1"
+                android:textColor="@color/secondaryTextColorBold"
+                android:textSize="@dimen/caption"
+                android:text="Puesto de trabajo"
+                app:layout_constraintStart_toStartOf="@+id/textView5"
+                app:layout_constraintTop_toBottomOf="@+id/textView5"
+                tools:text="SUBTITLE" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/secondaryTextColorBold"
+                android:textSize="@dimen/caption"
+                android:text="2014-2016"
+                app:layout_constraintBottom_toBottomOf="@+id/textView6"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                tools:text="2014-2016" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="16dp"
+                android:text="Descripción de la experiencia"
+                tools:text="DESCRIPTION"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/textView5"
+                app:layout_constraintStart_toStartOf="@+id/textView6"
+                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            android:weightSum="1000"
+            android:layout_marginStart="19.5dp"
+            android:visibility="@{isLastItem ? View.GONE : View.VISIBLE}">
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="3.8"
+                android:layout_height="match_parent"
+                android:background="@color/primaryColor"/>
+
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="996.2"
+                android:layout_height="match_parent"
+                android:background="@color/secondaryDividerColor"/>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/secondaryDividerColor"
+            android:visibility="@{isLastItem ? View.VISIBLE : View.GONE}"/>
+
+    </LinearLayout>
+</layout>

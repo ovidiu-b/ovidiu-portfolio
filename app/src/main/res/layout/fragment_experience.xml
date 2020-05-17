@@ -5,12 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".architecture.view.fragments.profile_tab_fragments.ExperienceFragmentTab">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@android:color/black"
-        android:text="Experience"/>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        tools:itemCount="3"
+        tools:listitem="@layout/recycler_view_item_timeline"
+        style="@style/ListWithScrollbarTheme"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </FrameLayout>

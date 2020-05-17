@@ -9,4 +9,8 @@
   <color name="primaryDarkColor">#001064</color>
   <color name="primaryTextColorLight">#ffffff</color>
   <color name="primaryTextColorDark">@color/primaryColor</color>
+
+  <color name="secondaryTextColorBold">#404447</color>
+
+  <color name="secondaryDividerColor">#C1C2C3</color>
 </resources>
