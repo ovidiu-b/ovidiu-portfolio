@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture.model.source.local.entity
+package com.ovidiu.portfolio.architecture.model.data_source.local.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -13,11 +13,11 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-data class Experience(
+data class Degree(
     @PrimaryKey
     val id: String,
-    val company: String,
-    val job: String,
+    val school: String,
+    val title: String,
     val description: String,
     val dateBegin: Long,
     val dateEnd: Long?,

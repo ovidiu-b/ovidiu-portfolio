@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture
+package com.ovidiu.portfolio.support
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

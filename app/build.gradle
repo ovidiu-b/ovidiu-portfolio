@@ -46,12 +46,14 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    // Dagger
+    implementation 'com.google.dagger:dagger:2.27'
+    kapt 'com.google.dagger:dagger-compiler:2.27'
+
     // AppCompat
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
     implementation "androidx.recyclerview:recyclerview:1.1.0"
-
-    // Architecture Components
 
     // Room
     implementation "androidx.room:room-runtime:2.2.5"

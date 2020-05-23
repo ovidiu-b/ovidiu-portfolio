@@ -3,7 +3,7 @@ package com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.a
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.ovidiu.portfolio.R
-import com.ovidiu.portfolio.architecture.getLayoutBinding
+import com.ovidiu.portfolio.support.getLayoutBinding
 import com.ovidiu.portfolio.databinding.RecyclerViewItemTimelineBinding
 
 class TimelineRecyclerViewAdapter: RecyclerView.Adapter<TimelineRecyclerViewAdapter.ExperienceItemViewHolder>() {

@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture.model.source.local.entity
+package com.ovidiu.portfolio.architecture.model.data_source.local.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -13,9 +13,10 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-data class Image(
+data class SocialMediaProfile(
     @PrimaryKey
     val id: String,
-    val uri: String,
+    val socialMediaName: String,
+    val profileUrl: String,
     val professionalId: String
 )

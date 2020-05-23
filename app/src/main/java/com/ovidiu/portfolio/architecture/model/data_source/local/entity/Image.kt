@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture.model.source.local.entity
+package com.ovidiu.portfolio.architecture.model.data_source.local.entity
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
@@ -13,13 +13,9 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-data class Degree(
+data class Image(
     @PrimaryKey
     val id: String,
-    val school: String,
-    val title: String,
-    val description: String,
-    val dateBegin: Long,
-    val dateEnd: Long?,
+    val uri: String,
     val professionalId: String
 )

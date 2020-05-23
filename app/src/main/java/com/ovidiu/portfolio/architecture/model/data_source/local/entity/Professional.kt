@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture.model.source.local.entity
+package com.ovidiu.portfolio.architecture.model.data_source.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
