@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import androidx.navigation.Navigation
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.AboutMeFragmentTab
@@ -41,6 +42,8 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         Glide
             .with(requireContext())
             .load(R.drawable.ovidiu_2)
+            .diskCacheStrategy(DiskCacheStrategy.NONE)
+            .skipMemoryCache(true)
             .apply(RequestOptions().circleCrop())
             .into(binding.imageProfile)
 

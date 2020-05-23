@@ -6,6 +6,7 @@ import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDa
 import com.ovidiu.portfolio.architecture.model.data_source.local.DATABASE_NAME
 import com.ovidiu.portfolio.architecture.model.data_source.local.LocalDataBase
 import com.ovidiu.portfolio.architecture.model.data_source.local.data_access.ProfessionalLocalDataAccess
+import com.ovidiu.portfolio.architecture.model.data_source.remote.api_rest.ProfessionalApiRest
 import com.ovidiu.portfolio.architecture.model.data_source.remote.data_access.ProfessionalRemoteDataAccess
 import dagger.Module
 import dagger.Provides
@@ -43,8 +44,8 @@ object ApplicationModule {
     @Singleton
     @ProfessionalRemoteDataAccess
     @Provides
-    fun provideProfessionalRemoteDataAccess(): ProfessionalDataAccess {
-        return ProfessionalRemoteDataAccess("retrofit")
+    fun provideProfessionalRemoteDataAccess(professionalApiRest: ProfessionalApiRest): ProfessionalDataAccess {
+        return ProfessionalRemoteDataAccess(professionalApiRest)
     }
 
     @JvmStatic
