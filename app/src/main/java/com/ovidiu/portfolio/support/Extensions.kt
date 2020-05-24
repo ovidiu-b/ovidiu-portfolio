@@ -8,6 +8,8 @@ import androidx.annotation.RawRes
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
@@ -25,3 +27,5 @@ fun AppCompatImageView.circleDrawable(@RawRes @DrawableRes drawableResource: Int
         .apply(RequestOptions().circleCrop())
         .into(this)
 }
+
+fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
