@@ -49,6 +49,9 @@ dependencies {
     // Dagger
     implementation 'com.google.dagger:dagger:2.27'
     kapt 'com.google.dagger:dagger-compiler:2.27'
+    // Using Dagger in androidTest and Robolectric too
+    kaptAndroidTest "com.google.dagger:dagger-compiler:2.27"
+    kaptTest "com.google.dagger:dagger-compiler:2.27"
 
     // AppCompat
     implementation "androidx.appcompat:appcompat:1.1.0"
@@ -68,7 +71,7 @@ dependencies {
     // Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.2.2"
     implementation "androidx.navigation:navigation-ui-ktx:2.2.2"
-    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.0-alpha06'
+    implementation 'androidx.navigation:navigation-dynamic-features-fragment:2.3.0-beta01'
 
     // Material Desgin
     implementation 'com.google.android.material:material:1.2.0-alpha06'
@@ -96,6 +99,12 @@ dependencies {
     // OkHttp
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.7.2'
+
+    // ThreeTenABP - A library for managing dates and times
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.2.4'
+
+    // Debug Databse
+    debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 
     // Test
     testImplementation 'junit:junit:4.13'

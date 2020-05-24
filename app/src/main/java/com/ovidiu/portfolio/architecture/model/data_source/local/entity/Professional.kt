@@ -9,7 +9,7 @@ data class Professional(
     val id: String,
     val name: String,
     val surname: String,
-    val age: String,
+    val age: Int,
     val description: String,
     val title: String,
     val phone: String,

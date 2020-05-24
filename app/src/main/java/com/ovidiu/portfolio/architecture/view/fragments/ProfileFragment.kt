@@ -1,30 +1,46 @@
 package com.ovidiu.portfolio.architecture.view.fragments
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.fragment.app.*
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
+import com.google.android.material.snackbar.Snackbar
+import com.ovidiu.portfolio.MainApplication
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.AboutMeFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.ExperienceFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.StudiesFragmentTab
+import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentProfileBinding
+import com.ovidiu.portfolio.support.circleDrawable
+import javax.inject.Inject
 
 class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel by viewModels<ProfessionalViewModel> { viewModelFactory }
+
     override fun getViewBinding(inflater: LayoutInflater, container: ViewGroup?): FragmentProfileBinding {
         return FragmentProfileBinding.inflate(inflater, container, false)
+    }
+
+    override fun onAttach(context: Context) {
+        (requireActivity().applicationContext as MainApplication).applicationComponent.inject(this)
+        super.onAttach(context)
     }
 
     @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        Toast.makeText(context, viewModel.getMessage().toString(), Toast.LENGTH_LONG).show()
 
         val topAppBar = binding.topAppBar
         val viewPager = binding.viewPager
@@ -39,20 +55,14 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
             Navigation.findNavController(view).navigateUp()
         }
 
-        Glide
-            .with(requireContext())
-            .load(R.drawable.ovidiu_2)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .skipMemoryCache(true)
-            .apply(RequestOptions().circleCrop())
-            .into(binding.imageProfile)
+        binding.imageProfile.circleDrawable(R.drawable.ovidiu_2)
 
         viewPager.adapter = viewPagerAdapter
         viewPager.offscreenPageLimit = viewPagerAdapter.count - 1
         tabLayout.setupWithViewPager(viewPager)
 
         tabLayout.getTabAt(0)?.text = "Sobre mí"
-        tabLayout.getTabAt(1)?.text = "Experiencia"
+        tabLayout.getTabAt(1)?.text = "Trabajos"
         tabLayout.getTabAt(2)?.text = "Estudios"
     }
 }

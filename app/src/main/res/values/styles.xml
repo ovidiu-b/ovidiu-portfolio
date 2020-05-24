@@ -21,7 +21,7 @@
         <item name="colorOnPrimary">@android:color/white</item>
     </style>
 
-    <style name="ListWithScrollbarTheme">
+    <style name="ScrollbarTheme">
         <item name="android:scrollbars">vertical</item>
         <item name="android:scrollbarThumbVertical">@drawable/scrollbar_recyclerview_color</item>
         <item name="android:scrollbarSize">3dp</item>

@@ -5,6 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
+            name="dataModel"
+            type="com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.adapters.TimelineRecyclerViewAdapter.TimelineItemDataModel" />
+
+        <variable
             name="isFirstItem"
             type="Boolean" />
 
@@ -66,7 +70,7 @@
                 android:maxLines="1"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/subtitle_2"
-                android:text="NOMBRE DE LA EMPRESA"
+                android:text="@{dataModel.title}"
                 app:layout_constraintBottom_toTopOf="@+id/view3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/view3"
@@ -81,7 +85,7 @@
                 android:maxLines="1"
                 android:textColor="@color/secondaryTextColorBold"
                 android:textSize="@dimen/caption"
-                android:text="Puesto de trabajo"
+                android:text="@{dataModel.subtitle}"
                 app:layout_constraintStart_toStartOf="@+id/textView5"
                 app:layout_constraintTop_toBottomOf="@+id/textView5"
                 tools:text="SUBTITLE" />
@@ -91,7 +95,7 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/secondaryTextColorBold"
                 android:textSize="@dimen/caption"
-                android:text="2014-2016"
+                android:text="@{dataModel.rangeYears}"
                 app:layout_constraintBottom_toBottomOf="@+id/textView6"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"
                 tools:text="2014-2016" />
@@ -102,7 +106,7 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="13dp"
                 android:layout_marginBottom="16dp"
-                android:text="Descripción de la experiencia"
+                android:text="@{dataModel.description}"
                 tools:text="DESCRIPTION"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@+id/textView5"

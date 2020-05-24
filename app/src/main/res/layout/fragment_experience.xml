@@ -15,7 +15,7 @@
         android:clipToPadding="false"
         tools:itemCount="3"
         tools:listitem="@layout/recycler_view_item_timeline"
-        style="@style/ListWithScrollbarTheme"
+        style="@style/ScrollbarTheme"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 </FrameLayout>

@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/ScrollbarTheme"
     tools:context=".architecture.view.fragments.profile_tab_fragments.AboutMeFragmentTab">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/padding_body"
+        android:layout_marginTop="@dimen/padding_body"
+        android:layout_marginStart="@dimen/padding_body"
+        android:layout_marginEnd="@dimen/padding_body"
         android:orientation="vertical">
 
         <TextView
@@ -197,4 +200,4 @@
 
     </LinearLayout>
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

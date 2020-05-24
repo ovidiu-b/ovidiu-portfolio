@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 fun ViewGroup.getLayoutBinding(@LayoutRes layoutResource: Int) : ViewDataBinding {
@@ -19,6 +20,8 @@ fun AppCompatImageView.circleDrawable(@RawRes @DrawableRes drawableResource: Int
     Glide
         .with(this.context)
         .load(drawableResource)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .skipMemoryCache(true)
         .apply(RequestOptions().circleCrop())
         .into(this)
 }
