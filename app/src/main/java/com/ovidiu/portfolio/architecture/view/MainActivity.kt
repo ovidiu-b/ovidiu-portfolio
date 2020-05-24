@@ -21,13 +21,13 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
     override fun onCreate(savedInstanceState: Bundle?) {
         (applicationContext as MainApplication).applicationComponent.inject(this)
 
+        super.onCreate(savedInstanceState)
+
         Executors.newSingleThreadExecutor().execute {
             //createProfessional()
             //createExperiences()
             //createStudies()
         }
-
-        super.onCreate(savedInstanceState)
     }
 
     private fun createProfessional() {
