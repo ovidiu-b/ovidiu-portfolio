@@ -7,7 +7,11 @@ import javax.inject.Inject
 
 class ProfessionalRemoteDataAccess @Inject constructor(private val apiRest: ProfessionalApiRest) :
     ProfessionalDataAccess {
-    override suspend fun getProfessionalByCompleteName(completeName: String): Professional {
+    override suspend fun getProfessionalByNameAndSurname(
+        name: String,
+        surname: String
+    ): Professional {
         TODO("Not yet implemented")
     }
+
 }

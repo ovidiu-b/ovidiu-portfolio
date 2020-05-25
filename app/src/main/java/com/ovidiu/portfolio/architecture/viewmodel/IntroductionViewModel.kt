@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
 import com.ovidiu.portfolio.support.asLiveData
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,6 +17,8 @@ class IntroductionViewModel @Inject constructor(private val repository: Professi
 
     fun loadProfessionalByNameAndSurname(professionalName: String, professionalSurname: String) = viewModelScope.launch {
         val professional: Professional = repository.getProfessionalByNameAndSurname(professionalName, professionalSurname)
+
+        professionalMutableLiveData.value = professional
     }
 
 }
