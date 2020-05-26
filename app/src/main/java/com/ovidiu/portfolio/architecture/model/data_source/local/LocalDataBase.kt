@@ -8,7 +8,7 @@ import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
 const val DATABASE_NAME = "LocalDB"
 
 @Database(
-    entities = [Professional::class, SocialMediaProfile::class, Image::class, Experience::class, Degree::class],
+    entities = [Professional::class, Contact::class, Image::class, Experience::class, Degree::class],
     version = 1
 )
 abstract class LocalDataBase : RoomDatabase() {

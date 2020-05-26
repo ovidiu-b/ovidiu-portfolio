@@ -13,10 +13,10 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-data class SocialMediaProfile(
+data class Contact(
     @PrimaryKey
     val id: String,
-    val socialMediaName: String,
-    val profileUrl: String,
+    val contactType: String,
+    val value: String,
     val professionalId: String
 )

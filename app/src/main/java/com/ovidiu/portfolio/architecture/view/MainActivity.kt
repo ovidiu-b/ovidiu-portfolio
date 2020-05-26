@@ -2,12 +2,14 @@ package com.ovidiu.portfolio.architecture.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope
 import com.ovidiu.portfolio.MainApplication
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.model.data_source.local.LocalDataBase
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Degree
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Experience
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
+import kotlinx.coroutines.launch
 import org.threeten.bp.ZonedDateTime
 import java.util.*
 import java.util.concurrent.Executors
