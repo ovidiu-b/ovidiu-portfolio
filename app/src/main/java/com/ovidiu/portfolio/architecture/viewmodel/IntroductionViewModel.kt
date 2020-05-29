@@ -7,11 +7,12 @@ import androidx.lifecycle.viewModelScope
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Contact
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
+import com.ovidiu.portfolio.di.modules.TestModule
 import com.ovidiu.portfolio.support.asLiveData
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class IntroductionViewModel @Inject constructor(private val repository: ProfessionalRepository) : ViewModel()
+class IntroductionViewModel @Inject constructor(@TestModule.FakeProfessionalDataAccess private val repository: ProfessionalRepository) : ViewModel()
 {
     private val _professional = MutableLiveData<Professional>()
     val professional: LiveData<Professional> = _professional.asLiveData()

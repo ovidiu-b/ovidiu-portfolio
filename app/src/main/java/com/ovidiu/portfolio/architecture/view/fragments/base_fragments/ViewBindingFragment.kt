@@ -1,4 +1,4 @@
-package com.ovidiu.portfolio.architecture.view.fragments
+package com.ovidiu.portfolio.architecture.view.fragments.base_fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater

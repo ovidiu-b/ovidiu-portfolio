@@ -1,10 +1,11 @@
-package com.ovidiu.portfolio.architecture.model.repository
+package com.ovidiu.portfolio.test_data
 
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Contact
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Image
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
+import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
 
-class FakeProfessionalRepository : ProfessionalRepository {
+class FakeProfessionalRepositoryData : ProfessionalRepository {
 
     private val professionalList: List<Professional> = listOf(
         Professional(

@@ -20,3 +20,10 @@ data class Contact(
     val value: String,
     val professionalId: String
 )
+
+enum class ContactType(val type: String) {
+    PHONE("Phone"),
+    EMAIL("Email"),
+    GITHUB("Github"),
+    LINKEDIN("Linkedin")
+}
