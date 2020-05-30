@@ -18,13 +18,22 @@ fun ViewGroup.getLayoutBinding(@LayoutRes layoutResource: Int) : ViewDataBinding
     return DataBindingUtil.inflate(LayoutInflater.from(this.context), layoutResource, this, false)
 }
 
-fun AppCompatImageView.circleDrawable(@RawRes @DrawableRes drawableResource: Int) {
+fun AppCompatImageView.circleDrawable(@DrawableRes drawableResource: Int) {
     Glide
         .with(this.context)
         .load(drawableResource)
         .diskCacheStrategy(DiskCacheStrategy.NONE)
         .skipMemoryCache(true)
         .apply(RequestOptions().circleCrop())
+        .into(this)
+}
+
+fun AppCompatImageView.srcDrawable(@DrawableRes drawableResource: Int) {
+    Glide
+        .with(this.context)
+        .load(drawableResource)
+        .diskCacheStrategy(DiskCacheStrategy.NONE)
+        .skipMemoryCache(true)
         .into(this)
 }
 

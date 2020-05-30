@@ -19,5 +19,20 @@
         android:id="@+id/profileFragment"
         android:name="com.ovidiu.portfolio.architecture.view.fragments.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_imageFullSizeFragment"
+            app:destination="@id/imageFullSizeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageFullSizeFragment"
+        android:name="com.ovidiu.portfolio.architecture.view.fragments.ImageFullSizeFragment"
+        android:label="ImageFullSizeFragment" >
+        <argument
+            android:name="imageTitle"
+            app:argType="string" />
+        <argument
+            android:name="imageUrl"
+            app:argType="string" />
+    </fragment>
 </navigation>

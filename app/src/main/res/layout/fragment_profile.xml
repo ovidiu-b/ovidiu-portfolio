@@ -1,141 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".architecture.view.fragments.ProfileFragment">
+<layout>
+    <data>
+        <variable
+            name="professional"
+            type="com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional" />
+    </data>
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="245dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        tools:context=".architecture.view.fragments.ProfileFragment">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/topAppBar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:layout_alignParentStart="true"
-            android:minHeight="?android:attr/actionBarSize"
-            android:theme="@style/Toolbar"
-            app:menu="@menu/fragment_profile_toolbar_menu"
-            app:contentInsetStart="0dp"
-            app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
+            android:layout_height="245dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <TextView
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentStart="true"
+                android:minHeight="?android:attr/actionBarSize"
+                android:theme="@style/Toolbar"
+                app:menu="@menu/fragment_profile_toolbar_menu"
+                app:contentInsetStart="0dp"
+                app:navigationIcon="@drawable/ic_arrow_back_white_24dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:theme="@style/TextLight"
+                    android:textSize="@dimen/title_toolbar"
+                    android:text="PERFIL" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_gravity="center_horizontal"
+                app:cardCornerRadius="130dp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imageProfile"
+                    android:layout_width="115dp"
+                    android:layout_height="115dp"
+                    android:padding="@dimen/circle_image_border"/>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:theme="@style/TextLight"
-                android:textSize="@dimen/title_toolbar"
-                android:text="PERFIL" />
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
 
-        </com.google.android.material.appbar.MaterialToolbar>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:theme="@style/TextLight"
+                    android:textSize="@dimen/title_1"
+                    android:text="@{professional.name + ' ' + professional.surname}"
+                    tools:text="Name"/>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            android:layout_gravity="center_horizontal"
-            app:cardCornerRadius="130dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:textSize="@dimen/subtitle_2"
+                    android:theme="@style/TextLight"
+                    android:layout_gravity="center"
+                    android:text="@{professional.title}"
+                    tools:text="Profession"/>
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/imageProfile"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
-                android:padding="@dimen/circle_image_border"/>
+            </LinearLayout>
 
-        </com.google.android.material.card.MaterialCardView>
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:theme="@style/TextLight"
-                android:textSize="@dimen/title_1"
-                android:text="Ovidiu Balaban"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:textSize="@dimen/subtitle_2"
-                android:theme="@style/TextLight"
-                android:layout_gravity="center"
-                android:text="Programador Android"/>
-
-        </LinearLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="1dp"
-            app:tabMaxWidth="0dp"
-            app:tabGravity="fill"
-            app:tabMode="fixed">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Sobre mí" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Trabajos" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Estudios" />
-        </com.google.android.material.tabs.TabLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1.5dp"
-            android:layout_marginTop="-1dp"
-            android:background="@color/secondaryDividerColor"
-            android:layout_below="@id/tabLayout"/>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tabLayout"/>
-
-        <!--<androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/tabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="1dp"
+                app:tabMaxWidth="0dp"
                 app:tabGravity="fill"
-                app:tabMode="scrollable">
+                app:tabMode="fixed">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
@@ -145,14 +113,27 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Experiencía" />
+                    android:text="Trabajos" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Estudios" />
             </com.google.android.material.tabs.TabLayout>
-        </androidx.viewpager.widget.ViewPager>-->
-    </RelativeLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1.5dp"
+                android:layout_marginTop="-1dp"
+                android:background="@color/secondaryDividerColor"
+                android:layout_below="@id/tabLayout"/>
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewPager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tabLayout"/>
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

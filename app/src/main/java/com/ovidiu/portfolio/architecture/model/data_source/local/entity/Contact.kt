@@ -1,5 +1,6 @@
 package com.ovidiu.portfolio.architecture.model.data_source.local.entity
 
+import androidx.annotation.Keep
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.ForeignKey.CASCADE
@@ -21,6 +22,7 @@ data class Contact(
     val professionalId: String
 )
 
+@Keep
 enum class ContactType(val type: String) {
     PHONE("Phone"),
     EMAIL("Email"),
