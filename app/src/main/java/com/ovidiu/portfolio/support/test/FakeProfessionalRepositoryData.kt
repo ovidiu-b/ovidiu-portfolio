@@ -43,7 +43,7 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
                 "Overtel Technology Systems",
                 "Programador full stack",
                 "Descripción experience",
-                1521072000,
+                1520636400000,
                 null,
                 "idProfessional"
             )
@@ -57,8 +57,8 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
                 "I.E.S. Carlos III",
                 "Desarrollo de aplicaciones multiplataforma",
                 "Grado superior de desarrollo de aplicaciones multiplataforma",
-                1475193600,
-                1528329600,
+                1525816800000,
+                1528236000000,
                 "idProfessional"
             )
         )
