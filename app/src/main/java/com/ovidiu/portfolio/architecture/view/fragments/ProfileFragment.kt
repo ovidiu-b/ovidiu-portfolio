@@ -14,7 +14,7 @@ import com.ovidiu.portfolio.architecture.view.fragments.base_fragments.ViewBindi
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.AboutMeFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.ExperienceFragmentTab
 import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.StudiesFragmentTab
-import com.ovidiu.portfolio.architecture.viewmodel.ProfileViewModel
+import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentProfileBinding
 import com.ovidiu.portfolio.support.circleDrawable
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<ProfileViewModel> { viewModelFactory }
+    private val viewModel by viewModels<ProfessionalViewModel> { viewModelFactory }
 
     override fun onAttach(context: Context) {
         (requireActivity().applicationContext as MainApplication).applicationComponent.inject(this)

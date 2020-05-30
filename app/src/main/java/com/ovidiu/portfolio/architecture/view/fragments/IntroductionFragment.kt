@@ -14,14 +14,14 @@ import androidx.navigation.Navigation
 import com.ovidiu.portfolio.MainApplication
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.ContactType
 import com.ovidiu.portfolio.architecture.view.fragments.base_fragments.ViewBindingFragment
-import com.ovidiu.portfolio.architecture.viewmodel.IntroductionViewModel
+import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentIntroductionBinding
 import javax.inject.Inject
 
 class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel by viewModels<IntroductionViewModel> { viewModelFactory }
+    private val viewModel by viewModels<ProfessionalViewModel> { viewModelFactory }
 
     private lateinit var contactPhone: String
     private lateinit var contactEmail: String

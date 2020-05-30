@@ -7,14 +7,13 @@ import com.ovidiu.portfolio.architecture.MainCoroutineRule
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.ContactType
 import com.ovidiu.portfolio.support.test.FakeProfessionalRepositoryData
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import org.junit.Test
-
 import org.junit.Before
 import org.junit.Rule
+import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class IntroductionViewModelUnitTest {
-    private lateinit var sut: IntroductionViewModel
+class ProfessionalViewModelUnitTest {
+    private lateinit var sut: ProfessionalViewModel
 
     private lateinit var professionalRepository: FakeProfessionalRepositoryData
 
@@ -30,11 +29,11 @@ class IntroductionViewModelUnitTest {
     @Before
     fun setup() {
         professionalRepository = FakeProfessionalRepositoryData()
-        sut = IntroductionViewModel(professionalRepository)
+        sut = ProfessionalViewModel(professionalRepository)
     }
 
     @Test
-    fun loadProfessionalFromRepository_professionalNameAndSurnameMatches() {
+    fun loadProfessionalFromRepository_nameAndSurnameMatches() {
         loadProfessionalFromRepository()
 
         assertThat(LiveDataTestUtil.getValue(sut.professional).name).isEqualTo(professionalName)
@@ -42,7 +41,7 @@ class IntroductionViewModelUnitTest {
     }
 
     @Test
-    fun loadProfessionalFromRepository_professionalImageUrlNotNullOrEmpty() {
+    fun loadProfessionalFromRepository_imageUrlNotNullOrEmpty() {
         loadProfessionalFromRepository()
 
         assertThat(LiveDataTestUtil.getValue(sut.profileImageUrl)).isNotNull()
@@ -51,7 +50,7 @@ class IntroductionViewModelUnitTest {
 
     // The professional must have at least 4 contact types such as Phone, Email, Github and LinkedIn
     @Test
-    fun loadProfessionalFromRepository_professionalSocialMediaPhoneEmailGithubLinkedin() {
+    fun loadProfessionalFromRepository_socialMediaPhoneEmailGithubLinkedin() {
         loadProfessionalFromRepository()
 
         val contactList = LiveDataTestUtil.getValue(sut.contactList)
@@ -65,6 +64,22 @@ class IntroductionViewModelUnitTest {
         assertThat(email).isNotNull()
         assertThat(github).isNotNull()
         assertThat(linkedin).isNotNull()
+    }
+
+    @Test
+    fun loadProfessionalFromRepository_experienceListNotNullOrEmpty() {
+        loadProfessionalFromRepository()
+
+        assertThat(LiveDataTestUtil.getValue(sut.experienceList)).isNotNull()
+        assertThat(LiveDataTestUtil.getValue(sut.experienceList)).isNotEmpty()
+    }
+
+    @Test
+    fun loadProfessionalFromRepository_studyListNotNullOrEmpty() {
+        loadProfessionalFromRepository()
+
+        assertThat(LiveDataTestUtil.getValue(sut.studyList)).isNotNull()
+        assertThat(LiveDataTestUtil.getValue(sut.studyList)).isNotEmpty()
     }
 
     private fun loadProfessionalFromRepository() {

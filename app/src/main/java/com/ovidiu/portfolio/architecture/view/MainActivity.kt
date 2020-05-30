@@ -2,14 +2,12 @@ package com.ovidiu.portfolio.architecture.view
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
 import com.ovidiu.portfolio.MainApplication
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.model.data_source.local.LocalDataBase
-import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Degree
+import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Study
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Experience
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
-import kotlinx.coroutines.launch
 import org.threeten.bp.ZonedDateTime
 import java.util.*
 import java.util.concurrent.Executors
@@ -26,9 +24,9 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
         super.onCreate(savedInstanceState)
 
         Executors.newSingleThreadExecutor().execute {
-            //createProfessional()
-            //createExperiences()
-            //createStudies()
+            /*createProfessional()
+            createExperiences()
+            createStudies()*/
         }
     }
 
@@ -62,7 +60,7 @@ class MainActivity : AppCompatActivity(R.layout.activity_main)
     }
 
     private fun createStudies() {
-        val study = Degree(
+        val study = Study(
             UUID.randomUUID().toString(),
             "I.E.S. Carlos III",
             "Desarrollo de aplicaciones multiplataforma",

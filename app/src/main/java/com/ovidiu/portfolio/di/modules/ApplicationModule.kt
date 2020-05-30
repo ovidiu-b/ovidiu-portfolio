@@ -1,6 +1,7 @@
 package com.ovidiu.portfolio.di.modules
 
 import android.content.Context
+import androidx.lifecycle.ViewModel
 import androidx.room.Room
 import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDataAccess
 import com.ovidiu.portfolio.architecture.model.data_source.local.DATABASE_NAME
@@ -10,9 +11,11 @@ import com.ovidiu.portfolio.architecture.model.data_source.remote.api_rest.Profe
 import com.ovidiu.portfolio.architecture.model.data_source.remote.data_access.ProfessionalRemoteDataAccess
 import com.ovidiu.portfolio.architecture.model.repository.DefaultProfessionalRepository
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
+import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.multibindings.IntoMap
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Qualifier
@@ -21,6 +24,7 @@ import kotlin.annotation.AnnotationRetention.BINARY
 
 @Module(includes = [ApplicationModuleBinds::class])
 object ApplicationModule {
+
     @Qualifier
     @Retention(BINARY)
     annotation class ProfessionalLocalDataAccess
@@ -70,6 +74,11 @@ object ApplicationModule {
 
 @Module
 abstract class ApplicationModuleBinds {
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ProfessionalViewModel::class)
+    abstract fun bindViewModel(viewmodel: ProfessionalViewModel): ViewModel
 
     @Singleton
     @Binds

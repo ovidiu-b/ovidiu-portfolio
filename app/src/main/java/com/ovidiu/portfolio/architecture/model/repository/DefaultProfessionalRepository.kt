@@ -2,7 +2,9 @@ package com.ovidiu.portfolio.architecture.model.repository
 
 import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDataAccess
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Contact
+import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Experience
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
+import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Study
 import com.ovidiu.portfolio.di.modules.ApplicationModule.ProfessionalRemoteDataAccess
 import com.ovidiu.portfolio.di.modules.ApplicationModule.ProfessionalLocalDataAccess
 import kotlinx.coroutines.CoroutineDispatcher
@@ -31,6 +33,14 @@ class DefaultProfessionalRepository @Inject constructor(
     }
 
     override suspend fun getProfessionalContactList(idProfessional: String): List<Contact> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfessionalExperienceList(idProfessional: String): List<Experience> {
+        TODO("Not yet implemented")
+    }
+
+    override suspend fun getProfessionalStudyList(idProfessional: String): List<Study> {
         TODO("Not yet implemented")
     }
 }

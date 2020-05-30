@@ -15,8 +15,6 @@ import javax.inject.Singleton
     modules = [
         ApplicationModule::class,
         ViewModelModule::class,
-        IntroductionModule::class,
-        ProfileModule::class,
         NetworkModule::class,
         TestModule::class]
 )

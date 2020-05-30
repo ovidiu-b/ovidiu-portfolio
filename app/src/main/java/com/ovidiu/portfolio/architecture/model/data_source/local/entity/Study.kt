@@ -13,7 +13,7 @@ import androidx.room.PrimaryKey
         onDelete = CASCADE
     )]
 )
-data class Degree(
+data class Study(
     @PrimaryKey
     val id: String,
     val school: String,
