@@ -23,6 +23,9 @@
         <action
             android:id="@+id/action_profileFragment_to_imageFullSizeFragment"
             app:destination="@id/imageFullSizeFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_timelineExtendedFragment"
+            app:destination="@id/timelineExtendedFragment" />
     </fragment>
     <fragment
         android:id="@+id/imageFullSizeFragment"
@@ -34,5 +37,13 @@
         <argument
             android:name="imageUrl"
             app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/timelineExtendedFragment"
+        android:name="com.ovidiu.portfolio.architecture.view.fragments.TimelineExtendedFragment"
+        android:label="TimelineExtendedFragment" >
+        <argument
+            android:name="timeline"
+            app:argType="com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.adapters.TimelineRecyclerViewAdapter$TimelineItemDataModel" />
     </fragment>
 </navigation>

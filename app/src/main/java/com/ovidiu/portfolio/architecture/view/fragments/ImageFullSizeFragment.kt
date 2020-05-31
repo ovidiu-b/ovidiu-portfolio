@@ -16,6 +16,8 @@ class ImageFullSizeFragment :
 
     private val args: ImageFullSizeFragmentArgs by navArgs()
 
+    private var navigationBarColor: Int = 0
+
     override fun getViewBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -33,12 +35,16 @@ class ImageFullSizeFragment :
         binding.imageTitle.text = args.imageTitle
         binding.imageView.srcDrawable(R.drawable.ovidiu)
 
+        navigationBarColor = requireActivity().window.navigationBarColor
+
         requireActivity().window.statusBarColor = resources.getColor(android.R.color.black, null)
+        requireActivity().window.navigationBarColor  = resources.getColor(android.R.color.black, null)
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
 
         requireActivity().window.statusBarColor = resources.getColor(R.color.primaryDarkColor, null)
+        requireActivity().window.navigationBarColor = navigationBarColor
     }
 }

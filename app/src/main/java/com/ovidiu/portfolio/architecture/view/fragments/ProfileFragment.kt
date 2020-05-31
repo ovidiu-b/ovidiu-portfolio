@@ -149,8 +149,8 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         viewModel.experienceList.observe(viewLifecycleOwner, Observer {
             viewPagerAdapter.experienceFragmentTab.setExperienceList(it.map { experience ->
                 TimelineItemDataModel(
-                    experience.company,
                     experience.job,
+                    experience.company,
                     experience.description,
                     getTimeLineRangeYearFormatted(experience.dateBegin, experience.dateEnd)
                 )
