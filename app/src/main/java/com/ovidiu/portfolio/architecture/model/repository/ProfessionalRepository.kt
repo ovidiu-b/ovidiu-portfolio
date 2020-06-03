@@ -6,7 +6,7 @@ import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professi
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Study
 
 interface ProfessionalRepository {
-    suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Professional
+    suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Professional?
 
     suspend fun getProfessionalProfileImageUrl(idProfessional: String): String
 

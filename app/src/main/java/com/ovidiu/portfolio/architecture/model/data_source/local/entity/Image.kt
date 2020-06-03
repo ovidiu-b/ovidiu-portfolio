@@ -16,6 +16,6 @@ import androidx.room.PrimaryKey
 data class Image(
     @PrimaryKey
     val id: String,
-    val uri: String,
+    val url: String,
     val professionalId: String
 )

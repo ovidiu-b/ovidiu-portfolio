@@ -13,8 +13,8 @@ const val DATABASE_NAME = "LocalDB"
 )
 abstract class LocalDataBase : RoomDatabase() {
     abstract fun professionalDao(): ProfessionalDao
-    abstract fun socialMediaProfileDao(): SocialMediaProfileDao
+    abstract fun contactDao(): ContactDao
     abstract fun imageDao(): ImageDao
     abstract fun experienceDao(): ExperienceDao
-    abstract fun degreeDao(): DegreeDao
+    abstract fun studyDao(): StudyDao
 }

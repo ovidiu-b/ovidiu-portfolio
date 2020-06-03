@@ -3,11 +3,11 @@ package com.ovidiu.portfolio.di.modules
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.room.Room
+import com.google.firebase.firestore.FirebaseFirestore
 import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDataAccess
 import com.ovidiu.portfolio.architecture.model.data_source.local.DATABASE_NAME
 import com.ovidiu.portfolio.architecture.model.data_source.local.LocalDataBase
 import com.ovidiu.portfolio.architecture.model.data_source.local.data_access.ProfessionalLocalDataAccess
-import com.ovidiu.portfolio.architecture.model.data_source.remote.api_rest.ProfessionalApiRest
 import com.ovidiu.portfolio.architecture.model.data_source.remote.data_access.ProfessionalRemoteDataAccess
 import com.ovidiu.portfolio.architecture.model.repository.DefaultProfessionalRepository
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
@@ -43,6 +43,10 @@ object ApplicationModule {
     ): ProfessionalDataAccess {
         return ProfessionalLocalDataAccess(
             dataBase.professionalDao(),
+            dataBase.imageDao(),
+            dataBase.studyDao(),
+            dataBase.contactDao(),
+            dataBase.experienceDao(),
             ioDispatcher
         )
     }
@@ -51,7 +55,7 @@ object ApplicationModule {
     @Singleton
     @ProfessionalRemoteDataAccess
     @Provides
-    fun provideProfessionalRemoteDataAccess(professionalApiRest: ProfessionalApiRest): ProfessionalDataAccess {
+    fun provideProfessionalRemoteDataAccess(professionalApiRest: FirebaseFirestore): ProfessionalDataAccess {
         return ProfessionalRemoteDataAccess(professionalApiRest)
     }
 
@@ -80,7 +84,6 @@ abstract class ApplicationModuleBinds {
     @ViewModelKey(ProfessionalViewModel::class)
     abstract fun bindViewModel(viewmodel: ProfessionalViewModel): ViewModel
 
-    @Singleton
     @Binds
     abstract fun bindDefaultProfessionalRepository(implementation: DefaultProfessionalRepository): ProfessionalRepository
 }

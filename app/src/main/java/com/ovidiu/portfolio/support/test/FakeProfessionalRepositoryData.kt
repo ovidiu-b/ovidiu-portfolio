@@ -12,9 +12,7 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
             "Balaban",
             23,
             "Soy un programador Android",
-            "Programador Android",
-            "631178319",
-            "b.ovidiu.2312@gmail.com"
+            "Programador Android"
         )
     )
 
@@ -75,7 +73,7 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
 
     override suspend
     fun getProfessionalProfileImageUrl(idProfessional: String): String {
-        return professionalImage.first { it.professionalId == idProfessional }.uri
+        return professionalImage.first { it.professionalId == idProfessional }.url
     }
 
     override suspend

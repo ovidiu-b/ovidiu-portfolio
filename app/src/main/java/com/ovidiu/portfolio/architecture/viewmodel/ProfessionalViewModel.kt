@@ -8,12 +8,11 @@ import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Experien
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Study
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
-import com.ovidiu.portfolio.di.modules.TestModule.FakeProfessionalDataAccess
 import com.ovidiu.portfolio.support.asLiveData
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class ProfessionalViewModel@Inject constructor(@FakeProfessionalDataAccess private val repository: ProfessionalRepository) : ViewModel() {
+class ProfessionalViewModel @Inject constructor(private val repository: ProfessionalRepository) : ViewModel() {
 
     private val _professional = MutableLiveData<Professional>()
     val professional = _professional.asLiveData()
@@ -32,7 +31,7 @@ class ProfessionalViewModel@Inject constructor(@FakeProfessionalDataAccess priva
 
     fun loadProfessionalByNameAndSurname(professionalName: String, professionalSurname: String) =
         viewModelScope.launch {
-            val professional: Professional =
+            val professional: Professional? =
                 repository.getProfessionalByNameAndSurname(professionalName, professionalSurname)
 
             _professional.value = professional

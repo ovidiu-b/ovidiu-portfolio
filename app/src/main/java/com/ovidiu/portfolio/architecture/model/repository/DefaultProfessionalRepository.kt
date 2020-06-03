@@ -18,29 +18,52 @@ class DefaultProfessionalRepository @Inject constructor(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ProfessionalRepository {
 
-    override suspend fun getProfessionalByNameAndSurname(
-        name: String,
-        surname: String
-    ): Professional {
+    private var professionalCached: Professional? = null
+
+    override suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Professional? {
+
+        if(professionalCached != null) {
+            return professionalCached
+        }
 
         return withContext(ioDispatcher) {
-            return@withContext localRepository.getProfessionalByNameAndSurname(name, surname)
+            val professionalFromDB = localRepository.getProfessionalByNameAndSurname(name, surname)
+
+            professionalCached = if(professionalFromDB == null) {
+                val professionalFromServer = remoteRepository.getProfessionalByNameAndSurname(name, surname)
+
+                localRepository.insertProfessional(professionalFromServer!!)
+
+                professionalFromServer
+            } else {
+                professionalFromDB
+            }
+
+            return@withContext professionalCached
         }
     }
 
     override suspend fun getProfessionalProfileImageUrl(idProfessional: String): String {
-        TODO("Not yet implemented")
+        return withContext(ioDispatcher) {
+            return@withContext localRepository.getProfessionalProfileImageUrl(idProfessional)
+        }
     }
 
     override suspend fun getProfessionalContactList(idProfessional: String): List<Contact> {
-        TODO("Not yet implemented")
+        return withContext(ioDispatcher) {
+            return@withContext localRepository.getProfessionalContactList(idProfessional)
+        }
     }
 
     override suspend fun getProfessionalExperienceList(idProfessional: String): List<Experience> {
-        TODO("Not yet implemented")
+        return withContext(ioDispatcher) {
+            return@withContext localRepository.getProfessionalExperienceList(idProfessional)
+        }
     }
 
     override suspend fun getProfessionalStudyList(idProfessional: String): List<Study> {
-        TODO("Not yet implemented")
+        return withContext(ioDispatcher) {
+            return@withContext localRepository.getProfessionalStudyList(idProfessional)
+        }
     }
 }
