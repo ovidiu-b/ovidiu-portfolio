@@ -1,10 +1,11 @@
 package com.ovidiu.portfolio.architecture.model.data_source.remote.entity
 
-class ProfessionalRemote {
+class StudyRemote {
     var id = ""
-    var name = ""
-    var surname = ""
-    var age: Int = 0
+    var dateBegin: Long = 0
+    var dateEnd: Long? = null
     var description = ""
+    var school = ""
     var title = ""
+    var professionalId = ""
 }

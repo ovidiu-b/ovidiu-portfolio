@@ -72,8 +72,8 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
     }
 
     override suspend
-    fun getProfessionalProfileImageUrl(idProfessional: String): String {
-        return professionalImage.first { it.professionalId == idProfessional }.url
+    fun getProfessionalImage(idProfessional: String): Image {
+        return professionalImage.first { it.professionalId == idProfessional }
     }
 
     override suspend

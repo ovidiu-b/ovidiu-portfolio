@@ -143,7 +143,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         })
 
         viewModel.profileImageUrl.observe(viewLifecycleOwner, Observer {
-            professionalImageUrl = it
+            professionalImageUrl = it ?: ""
         })
 
         viewModel.experienceList.observe(viewLifecycleOwner, Observer {

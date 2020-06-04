@@ -17,7 +17,7 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
     private val _professional = MutableLiveData<Professional>()
     val professional = _professional.asLiveData()
 
-    private val _profileImageUrl = MutableLiveData<String>()
+    private val _profileImageUrl = MutableLiveData<String?>()
     val profileImageUrl = _profileImageUrl.asLiveData()
 
     private val _contactList = MutableLiveData<List<Contact>>()
@@ -43,7 +43,7 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
         }
 
     private suspend fun loadProfileImageUrl() {
-        _profileImageUrl.value = repository.getProfessionalProfileImageUrl(_professional.value!!.id)
+        _profileImageUrl.value = repository.getProfessionalImage(_professional.value!!.id)?.url
     }
 
     private suspend fun loadContactList() {
