@@ -4,6 +4,8 @@ import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDa
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
 import com.ovidiu.portfolio.di.modules.ApplicationModule.ProfessionalRemoteDataAccess
 import com.ovidiu.portfolio.di.modules.ApplicationModule.ProfessionalLocalDataAccess
+import com.ovidiu.portfolio.support.AppSettings
+import com.ovidiu.portfolio.support.DateTimeUtils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -12,6 +14,7 @@ import javax.inject.Inject
 class DefaultProfessionalRepository @Inject constructor(
     @ProfessionalLocalDataAccess private val localRepository: ProfessionalDataAccess,
     @ProfessionalRemoteDataAccess private val remoteRepository: ProfessionalDataAccess,
+    private val appSettings: AppSettings,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : ProfessionalRepository {
 
@@ -27,8 +30,10 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val professionalFromDB = localRepository.getProfessionalByNameAndSurname(name, surname)
 
-            professionalCached = if(professionalFromDB == null) {
+            professionalCached = if(professionalFromDB == null || professionalLastSyncWasOneHourAgo()) {
                 val professionalFromServer = remoteRepository.getProfessionalByNameAndSurname(name, surname)
+
+                appSettings.setLastDateTimeSync(DateTimeUtils.getInstantNow().toEpochMilli())
 
                 professionalFromServer?.let { localRepository.insertProfessional(it) }
 
@@ -47,7 +52,7 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val imageUrlFromDB = localRepository.getImage(idProfessional)
 
-            imageUrlCached = if(imageUrlFromDB == null) {
+            imageUrlCached = if(imageUrlFromDB == null || professionalLastSyncWasOneHourAgo()) {
                 val imageUrlFromServer = remoteRepository.getImage(idProfessional)
 
                 imageUrlFromServer?.let { localRepository.insertImage(it) }
@@ -67,7 +72,7 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val contactListFromDB = localRepository.getContactList(idProfessional)
 
-            contactListCached = if(contactListFromDB.isNullOrEmpty()) {
+            contactListCached = if(contactListFromDB.isNullOrEmpty() || professionalLastSyncWasOneHourAgo()) {
                 val contactListFromServer = remoteRepository.getContactList(idProfessional)
 
                 contactListFromServer?.let { localRepository.insertContactList(it) }
@@ -87,7 +92,7 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val experienceListFromDB = localRepository.getExperienceList(idProfessional)
 
-            experienceListCached = if(experienceListCached.isNullOrEmpty()) {
+            experienceListCached = if(experienceListCached.isNullOrEmpty() || professionalLastSyncWasOneHourAgo()) {
                 val experienceListFromServer = remoteRepository.getExperienceList(idProfessional)
 
                 experienceListFromServer?.let { localRepository.insertExperienceList(it) }
@@ -107,7 +112,7 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val studyListFromDB = localRepository.getStudyList(idProfessional)
 
-            studyListCached = if(studyListFromDB.isNullOrEmpty()) {
+            studyListCached = if(studyListFromDB.isNullOrEmpty() || professionalLastSyncWasOneHourAgo()) {
                 val studyListFromServer = remoteRepository.getStudyList(idProfessional)
 
                 studyListFromServer?.let { localRepository.insertStudyList(it) }
@@ -119,5 +124,15 @@ class DefaultProfessionalRepository @Inject constructor(
 
             return@withContext studyListCached
         }
+    }
+
+    private fun professionalLastSyncWasOneHourAgo(): Boolean {
+        val instantNow = DateTimeUtils.getInstantNow()
+
+        val diff = instantNow.minusMillis(appSettings.getLastDateTimeSync())
+
+        val hourInMilli = 3600000L
+
+        return diff.toEpochMilli() >= hourInMilli
     }
 }

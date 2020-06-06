@@ -12,6 +12,7 @@ import com.ovidiu.portfolio.architecture.model.data_source.remote.data_access.Pr
 import com.ovidiu.portfolio.architecture.model.repository.DefaultProfessionalRepository
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
 import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
+import com.ovidiu.portfolio.support.AppSettings
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -68,6 +69,13 @@ object ApplicationModule {
             LocalDataBase::class.java,
             DATABASE_NAME
         ).build()
+    }
+
+    @JvmStatic
+    @Singleton
+    @Provides
+    fun provideAppSettings(context: Context): AppSettings {
+        return AppSettings(context)
     }
 
     @JvmStatic
