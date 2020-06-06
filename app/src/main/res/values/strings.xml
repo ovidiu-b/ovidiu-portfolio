@@ -4,4 +4,7 @@
     <string name="github">Github</string>
     <string name="linkedin">LinkedIn</string>
     <string name="mail_me">Envíame un email</string>
+
+    <string name="error_loading_data">Error mientras se cargaban los datos</string>
+    <!--<string name="no_internet_conection">No tiene conexión a Internet</string>-->
 </resources>

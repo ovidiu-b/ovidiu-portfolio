@@ -3,6 +3,7 @@ package com.ovidiu.portfolio.architecture.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Contact
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Experience
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.Professional
@@ -11,10 +12,14 @@ import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
 import com.ovidiu.portfolio.support.asLiveData
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import com.ovidiu.portfolio.architecture.model.repository.Result
+import com.ovidiu.portfolio.architecture.model.repository.Result.Success
+import com.ovidiu.portfolio.architecture.model.repository.succeeded
+import com.ovidiu.portfolio.support.LiveDataEvent
 
 class ProfessionalViewModel @Inject constructor(private val repository: ProfessionalRepository) : ViewModel() {
 
-    private val _professional = MutableLiveData<Professional>()
+    private val _professional = MutableLiveData<Professional?>()
     val professional = _professional.asLiveData()
 
     private val _profileImageUrl = MutableLiveData<String?>()
@@ -32,19 +37,27 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
     private val _professionalLoaded = MutableLiveData<Boolean>()
     val professionalLoaded = _professionalLoaded.asLiveData()
 
+    private val _snackbarMessage = MutableLiveData<LiveDataEvent<Int>>()
+    val snackbarMessage = _snackbarMessage.asLiveData()
+
     fun loadProfessionalByNameAndSurname(professionalName: String, professionalSurname: String) =
         viewModelScope.launch {
             _professionalLoaded.value = false
 
-            val professional: Professional? =
+            val professionalTask: Result<Professional?> =
                 repository.getProfessionalByNameAndSurname(professionalName, professionalSurname)
 
-            _professional.value = professional
+            if (professionalTask.succeeded) {
+                _professional.value = (professionalTask as Success).data
 
-            loadProfileImageUrl()
-            loadContactList()
-            loadExperienceList()
-            loadStudyList()
+                loadProfileImageUrl()
+                loadContactList()
+                loadExperienceList()
+                loadStudyList()
+            } else {
+                _professional.value = null
+                _snackbarMessage.value = LiveDataEvent(R.string.error_loading_data)
+            }
 
             _professionalLoaded.value = true
         }

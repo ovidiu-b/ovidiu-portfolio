@@ -3,8 +3,10 @@ package com.ovidiu.portfolio.architecture.model.data_source.local.data_access
 import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDataAccess
 import com.ovidiu.portfolio.architecture.model.data_source.local.dao.*
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
+import com.ovidiu.portfolio.architecture.model.repository.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class ProfessionalLocalDataAccess @Inject constructor(
@@ -17,9 +19,12 @@ class ProfessionalLocalDataAccess @Inject constructor(
 ) : ProfessionalDataAccess {
 
     override suspend fun getProfessionalByNameAndSurname(name: String, surname: String):
-            Professional? = withContext(ioDispatcher)
+            Result<Professional> = withContext(ioDispatcher)
     {
-        return@withContext professionalDao.getByNameAndSurname(name, surname)
+        val professional = professionalDao.getByNameAndSurname(name, surname)
+            ?: return@withContext Result.Error(Exception("El profesional no existe"))
+
+        return@withContext Result.Success(professional)
     }
 
     override suspend fun insertProfessional(professional: Professional) = withContext(ioDispatcher) {

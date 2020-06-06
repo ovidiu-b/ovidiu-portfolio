@@ -135,7 +135,7 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
         viewModel.professional.observe(viewLifecycleOwner, Observer {
             binding.professional = it
-            viewPagerAdapter.aboutMeFragmentTab.setProfessional(it)
+            viewPagerAdapter.aboutMeFragmentTab.setProfessional(it!!)
 
             professionalCompleteName = it.name + " " + it.surname
         })

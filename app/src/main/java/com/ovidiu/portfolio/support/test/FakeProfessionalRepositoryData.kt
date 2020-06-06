@@ -2,6 +2,7 @@ package com.ovidiu.portfolio.support.test
 
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
 import com.ovidiu.portfolio.architecture.model.repository.ProfessionalRepository
+import com.ovidiu.portfolio.architecture.model.repository.Result
 
 class FakeProfessionalRepositoryData : ProfessionalRepository {
 
@@ -66,9 +67,9 @@ class FakeProfessionalRepositoryData : ProfessionalRepository {
     fun getProfessionalByNameAndSurname(
         name: String,
         surname: String
-    ): Professional {
+    ): Result<Professional?> {
 
-        return professionalList.first { it.name == name && it.surname == surname }
+        return Result.Success(professionalList.first { it.name == name && it.surname == surname })
     }
 
     override suspend

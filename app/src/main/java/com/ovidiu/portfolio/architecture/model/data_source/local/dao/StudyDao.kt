@@ -11,6 +11,6 @@ interface StudyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(studyList: List<Study>)
 
-    @Query("SELECT * FROM Study WHERE professionalId=:professionalId")
+    @Query("SELECT * FROM Study WHERE professionalId=:professionalId ORDER BY dateBegin desc")
     fun getAllByProfessionalId(professionalId: String): List<Study>
 }

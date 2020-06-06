@@ -2,6 +2,7 @@ package com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.a
 
 import android.os.Parcelable
 import android.view.ViewGroup
+import androidx.annotation.Keep
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.ovidiu.portfolio.R
@@ -54,6 +55,7 @@ class TimelineRecyclerViewAdapter :
         }
     }
 
+    @Keep
     @Parcelize
     data class TimelineItemDataModel(
         val title: String,

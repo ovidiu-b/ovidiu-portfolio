@@ -5,6 +5,7 @@ import com.google.firebase.firestore.ktx.toObjects
 import com.ovidiu.portfolio.architecture.model.data_source.common.ProfessionalDataAccess
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
 import com.ovidiu.portfolio.architecture.model.data_source.remote.entity.*
+import com.ovidiu.portfolio.architecture.model.repository.Result
 import kotlinx.coroutines.tasks.await
 import java.lang.Exception
 import javax.inject.Inject
@@ -15,7 +16,7 @@ class ProfessionalRemoteDataAccess @Inject constructor(private val firestore: Fi
     override suspend fun getProfessionalByNameAndSurname(
         name: String,
         surname: String
-    ): Professional? {
+    ): Result<Professional?> {
         return try {
             val response = firestore.collection("Professional")
                 .whereEqualTo("name", name)
@@ -24,9 +25,9 @@ class ProfessionalRemoteDataAccess @Inject constructor(private val firestore: Fi
 
             val objectList = response.toObjects<ProfessionalRemote>()
 
-            Professional(objectList[0])
+            Result.Success(Professional(objectList[0]))
         } catch(e: Exception) {
-            null
+            Result.Error(e)
         }
     }
 

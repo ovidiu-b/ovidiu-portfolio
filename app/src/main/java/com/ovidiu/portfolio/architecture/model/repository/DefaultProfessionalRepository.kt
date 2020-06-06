@@ -9,6 +9,7 @@ import com.ovidiu.portfolio.support.DateTimeUtils
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.lang.Exception
 import javax.inject.Inject
 
 class DefaultProfessionalRepository @Inject constructor(
@@ -24,25 +25,58 @@ class DefaultProfessionalRepository @Inject constructor(
     private var experienceListCached: List<Experience>? = null
     private var studyListCached: List<Study>? = null
 
-    override suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Professional? {
-        if(professionalCached != null) return professionalCached
+    override suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Result<Professional?> {
+        professionalCached?.let { return Result.Success(it) }
 
         return withContext(ioDispatcher) {
-            val professionalFromDB = localRepository.getProfessionalByNameAndSurname(name, surname)
+            // El profesional no está en la cache
+            // Tenemos que cargarlo desde la base de datos o desde el servidor remoto
 
-            professionalCached = if(professionalFromDB == null || professionalLastSyncWasOneHourAgo()) {
-                val professionalFromServer = remoteRepository.getProfessionalByNameAndSurname(name, surname)
+            // ¿Cuando cargamos el profesional desde el servidor remoto?
+            // 1. El profesional no existe en la base de datos local
+            // 2. Ha pasado más de 1 hora sin cargar el profesional desde el servidor remoto
 
-                appSettings.setLastDateTimeSync(DateTimeUtils.getInstantNow().toEpochMilli())
+            // Cada vez que cargamos el profesional desde el servidor remoto, lo actualizamos en
+            // la base de datos local
 
-                professionalFromServer?.let { localRepository.insertProfessional(it) }
+            val localProfessionalResult = localRepository.getProfessionalByNameAndSurname(name, surname)
 
-                professionalFromServer
+            if(localProfessionalResult.succeeded) {
+                professionalCached = (localProfessionalResult as Result.Success).data
+
+                if(professionalLastSyncWasOneHourAgo()) {
+                    loadProfessionalFromRemote(name, surname) {
+                        professionalCached = it
+                    }
+                }
             } else {
-                professionalFromDB
+                // Cargamos el profesional desde el servidor, ya que no ha sido posible cargarlo desde
+                // la base de datos local
+
+                loadProfessionalFromRemote(name, surname) {
+                    professionalCached = it
+                }
             }
 
-            return@withContext professionalCached
+            if(professionalCached == null) {
+                return@withContext  Result.Error(Exception("No se ha podido cargar el profesional"))
+            }
+
+            return@withContext  Result.Success(professionalCached)
+        }
+    }
+
+    private suspend fun loadProfessionalFromRemote(name: String, surname: String, onSuccess: (professional: Professional?) -> Unit) {
+        val remoteProfessionalResult = remoteRepository.getProfessionalByNameAndSurname(name, surname)
+
+        if(remoteProfessionalResult.succeeded) {
+            appSettings.setLastDateTimeSync(DateTimeUtils.getInstantNow().toEpochMilli())
+
+            (remoteProfessionalResult as Result.Success).data?.let {
+                localRepository.insertProfessional(it)
+            }
+
+            onSuccess(remoteProfessionalResult.data)
         }
     }
 

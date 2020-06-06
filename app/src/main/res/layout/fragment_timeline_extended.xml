@@ -91,7 +91,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_between_1"
-                    android:text="@{timeline.description}"
+                    app:setTextWithLines="@{timeline.description}"
                     tools:text="Timeline description"/>
 
             </LinearLayout>

@@ -11,12 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
+import com.google.android.material.snackbar.Snackbar
 import com.ovidiu.portfolio.MainApplication
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.ContactType
 import com.ovidiu.portfolio.architecture.view.fragments.base_fragments.ViewBindingFragment
 import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentIntroductionBinding
 import com.ovidiu.portfolio.support.asCircle
+import com.ovidiu.portfolio.support.setupSnackbar
 import javax.inject.Inject
 
 class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() {
@@ -75,6 +77,8 @@ class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() 
         binding.btnKnowMoreAboutMe.setOnClickListener (
             Navigation.createNavigateOnClickListener(IntroductionFragmentDirections.actionIntroductionFragmentToProfileFragment())
         )
+
+        view?.setupSnackbar(viewLifecycleOwner, viewModel.snackbarMessage, Snackbar.LENGTH_SHORT)
     }
 
     private fun observeData() {
@@ -91,7 +95,18 @@ class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() 
         })
 
         viewModel.professional.observe(viewLifecycleOwner, Observer {
-            binding.professional = it
+            if(it != null) {
+                binding.content.visibility = View.VISIBLE
+                binding.backgroundError.visibility = View.GONE
+                binding.professional = it
+                binding.btnTryAgain.setOnClickListener(null)
+            } else {
+                binding.content.visibility = View.GONE
+                binding.backgroundError.visibility = View.VISIBLE
+                binding.btnTryAgain.setOnClickListener {
+                    viewModel.loadProfessionalByNameAndSurname("Ovidiu", "Balaban")
+                }
+            }
         })
 
         viewModel.profileImageUrl.observe(viewLifecycleOwner, Observer {

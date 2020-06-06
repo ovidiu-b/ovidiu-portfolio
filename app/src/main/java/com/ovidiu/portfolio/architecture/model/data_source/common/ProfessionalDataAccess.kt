@@ -1,9 +1,10 @@
 package com.ovidiu.portfolio.architecture.model.data_source.common
 
 import com.ovidiu.portfolio.architecture.model.data_source.local.entity.*
+import com.ovidiu.portfolio.architecture.model.repository.Result
 
 interface ProfessionalDataAccess {
-    suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Professional?
+    suspend fun getProfessionalByNameAndSurname(name: String, surname: String): Result<Professional?>
 
     suspend fun insertProfessional(professional: Professional)
 

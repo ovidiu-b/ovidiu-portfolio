@@ -12,5 +12,5 @@ interface ProfessionalDao {
     fun insert(professional: Professional)
 
     @Query("SELECT * FROM Professional WHERE name=:name and surname=:surname")
-    suspend fun getByNameAndSurname(name: String, surname: String): Professional
+    suspend fun getByNameAndSurname(name: String, surname: String): Professional?
 }
