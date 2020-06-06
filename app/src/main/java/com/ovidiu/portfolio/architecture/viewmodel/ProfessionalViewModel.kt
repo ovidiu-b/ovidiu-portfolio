@@ -29,8 +29,13 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
     private val _studyList = MutableLiveData<List<Study>>()
     val studyList = _studyList.asLiveData()
 
+    private val _professionalLoaded = MutableLiveData<Boolean>()
+    val professionalLoaded = _professionalLoaded.asLiveData()
+
     fun loadProfessionalByNameAndSurname(professionalName: String, professionalSurname: String) =
         viewModelScope.launch {
+            _professionalLoaded.value = false
+
             val professional: Professional? =
                 repository.getProfessionalByNameAndSurname(professionalName, professionalSurname)
 
@@ -40,6 +45,8 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
             loadContactList()
             loadExperienceList()
             loadStudyList()
+
+            _professionalLoaded.value = true
         }
 
     private suspend fun loadProfileImageUrl() {

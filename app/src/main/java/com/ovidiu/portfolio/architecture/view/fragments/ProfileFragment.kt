@@ -23,7 +23,7 @@ import com.ovidiu.portfolio.architecture.view.fragments.profile_tab_fragments.ad
 import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentProfileBinding
 import com.ovidiu.portfolio.support.DateTimeUtils
-import com.ovidiu.portfolio.support.circleDrawable
+import com.ovidiu.portfolio.support.asCircle
 import javax.inject.Inject
 
 class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
@@ -62,8 +62,6 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
         viewPagerAdapter = ProfileFragmentPageAdapter(activity?.supportFragmentManager!!)
-
-        binding.imageProfile.circleDrawable(R.drawable.ovidiu)
 
         binding.imageProfile.setOnClickListener {
             it.findNavController().navigate(
@@ -144,6 +142,8 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
 
         viewModel.profileImageUrl.observe(viewLifecycleOwner, Observer {
             professionalImageUrl = it ?: ""
+
+            binding.imageProfile.asCircle(professionalImageUrl)
         })
 
         viewModel.experienceList.observe(viewLifecycleOwner, Observer {

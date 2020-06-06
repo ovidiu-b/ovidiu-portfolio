@@ -9,7 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.ovidiu.portfolio.R
 import com.ovidiu.portfolio.architecture.view.fragments.base_fragments.ViewBindingFragment
 import com.ovidiu.portfolio.databinding.FragmentImageFullSizeBinding
-import com.ovidiu.portfolio.support.srcDrawable
+import com.ovidiu.portfolio.support.asCircle
 
 class ImageFullSizeFragment :
     ViewBindingFragment<FragmentImageFullSizeBinding>() {
@@ -33,7 +33,7 @@ class ImageFullSizeFragment :
         }
 
         binding.imageTitle.text = args.imageTitle
-        binding.imageView.srcDrawable(R.drawable.ovidiu)
+        binding.imageView.asCircle(args.imageUrl)
 
         navigationBarColor = requireActivity().window.navigationBarColor
 

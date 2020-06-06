@@ -41,6 +41,15 @@ class ProfessionalViewModelUnitTest {
     }
 
     @Test
+    fun loadProfessionalFromRepository_professionalLoaded() {
+        assertThat(LiveDataTestUtil.getValue(sut.professionalLoaded)).isNull()
+
+        loadProfessionalFromRepository()
+
+        assertThat(LiveDataTestUtil.getValue(sut.professionalLoaded)).isTrue()
+    }
+
+    @Test
     fun loadProfessionalFromRepository_imageUrlNotNullOrEmpty() {
         loadProfessionalFromRepository()
 

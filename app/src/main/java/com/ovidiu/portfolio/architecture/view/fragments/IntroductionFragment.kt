@@ -16,6 +16,7 @@ import com.ovidiu.portfolio.architecture.model.data_source.local.entity.ContactT
 import com.ovidiu.portfolio.architecture.view.fragments.base_fragments.ViewBindingFragment
 import com.ovidiu.portfolio.architecture.viewmodel.ProfessionalViewModel
 import com.ovidiu.portfolio.databinding.FragmentIntroductionBinding
+import com.ovidiu.portfolio.support.asCircle
 import javax.inject.Inject
 
 class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() {
@@ -79,12 +80,22 @@ class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() 
     private fun observeData() {
         viewModel.loadProfessionalByNameAndSurname("Ovidiu", "Balaban")
 
+        viewModel.professionalLoaded.observe(viewLifecycleOwner, Observer {
+            if(it) {
+                binding.backgroundLoading.visibility = View.GONE
+                binding.loading.hide()
+            } else {
+                binding.backgroundLoading.visibility = View.VISIBLE
+                binding.loading.show()
+            }
+        })
+
         viewModel.professional.observe(viewLifecycleOwner, Observer {
             binding.professional = it
         })
 
         viewModel.profileImageUrl.observe(viewLifecycleOwner, Observer {
-            binding.imageProfileUrl = it
+            it?.let { url -> binding.imageIntroduction.asCircle(url) }
         })
 
         viewModel.contactList.observe(viewLifecycleOwner, Observer { contacts ->
