@@ -32,7 +32,6 @@ fun ImageView.asCircle(url: String) {
 fun <T> MutableLiveData<T>.asLiveData() = this as LiveData<T>
 
 fun View.setupSnackbar(lifecycleOwner: LifecycleOwner, snackbarEvent: LiveData<LiveDataEvent<Int>>, timeLength: Int) {
-
     snackbarEvent.observe(lifecycleOwner, Observer { event ->
         event.getContentIfNotHandled()?.let {
             showSnackbar(context.getString(it), timeLength)

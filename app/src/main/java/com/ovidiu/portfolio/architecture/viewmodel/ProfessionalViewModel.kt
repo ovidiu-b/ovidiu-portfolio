@@ -25,13 +25,13 @@ class ProfessionalViewModel @Inject constructor(private val repository: Professi
     private val _profileImageUrl = MutableLiveData<String?>()
     val profileImageUrl = _profileImageUrl.asLiveData()
 
-    private val _contactList = MutableLiveData<List<Contact>>()
+    private val _contactList = MutableLiveData<List<Contact>?>()
     val contactList = _contactList.asLiveData()
 
-    private val _experienceList = MutableLiveData<List<Experience>>()
+    private val _experienceList = MutableLiveData<List<Experience>?>()
     val experienceList = _experienceList.asLiveData()
 
-    private val _studyList = MutableLiveData<List<Study>>()
+    private val _studyList = MutableLiveData<List<Study>?>()
     val studyList = _studyList.asLiveData()
 
     private val _professionalLoaded = MutableLiveData<Boolean>()

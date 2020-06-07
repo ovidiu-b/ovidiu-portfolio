@@ -6,5 +6,12 @@
     <string name="mail_me">Envíame un email</string>
 
     <string name="error_loading_data">Error mientras se cargaban los datos</string>
-    <!--<string name="no_internet_conection">No tiene conexión a Internet</string>-->
+    <string name="technology_stack">Stack Tecnológico</string>
+    <string name="try_again">Volver a intentar</string>
+    <string name="hello_my_name_is">Hola, mi nombre es</string>
+    <string name="know_more_about_me">Conoce más de mí</string>
+    <string name="profile">PERFIL</string>
+    <string name="about_me">Sobre mí</string>
+    <string name="jobs">Trabajos</string>
+    <string name="studies">Estudios</string>
 </resources>

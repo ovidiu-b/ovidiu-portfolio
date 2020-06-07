@@ -54,10 +54,15 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         return FragmentProfileBinding.inflate(inflater, container, false)
     }
 
-    @SuppressLint("RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUp()
+        observeData()
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun setUp() {
         val topAppBar = binding.topAppBar
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
@@ -116,28 +121,28 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
         }
 
         topAppBar.setNavigationOnClickListener {
-            Navigation.findNavController(view).navigateUp()
+            Navigation.findNavController(requireView()).navigateUp()
         }
 
         viewPager.adapter = viewPagerAdapter
         viewPager.offscreenPageLimit = viewPagerAdapter.count - 1
         tabLayout.setupWithViewPager(viewPager)
 
-        tabLayout.getTabAt(0)?.text = "Sobre mí"
-        tabLayout.getTabAt(1)?.text = "Trabajos"
-        tabLayout.getTabAt(2)?.text = "Estudios"
-
-        observeData()
+        tabLayout.getTabAt(0)?.text = getString(R.string.about_me)
+        tabLayout.getTabAt(1)?.text = getString(R.string.jobs)
+        tabLayout.getTabAt(2)?.text = getString(R.string.studies)
     }
 
     private fun observeData() {
         viewModel.loadProfessionalByNameAndSurname("Ovidiu", "Balaban")
 
-        viewModel.professional.observe(viewLifecycleOwner, Observer {
-            binding.professional = it
-            viewPagerAdapter.aboutMeFragmentTab.setProfessional(it!!)
+        viewModel.professional.observe(viewLifecycleOwner, Observer { professional ->
+            professional?.let {
+                binding.professional = it
+                viewPagerAdapter.aboutMeFragmentTab.setProfessional(it)
 
-            professionalCompleteName = it.name + " " + it.surname
+                professionalCompleteName = it.name + " " + it.surname
+            }
         })
 
         viewModel.profileImageUrl.observe(viewLifecycleOwner, Observer {
@@ -146,33 +151,39 @@ class ProfileFragment : ViewBindingFragment<FragmentProfileBinding>() {
             binding.imageProfile.asCircle(professionalImageUrl)
         })
 
-        viewModel.experienceList.observe(viewLifecycleOwner, Observer {
-            viewPagerAdapter.experienceFragmentTab.setExperienceList(it.map { experience ->
-                TimelineItemDataModel(
-                    experience.job,
-                    experience.company,
-                    experience.description,
-                    getTimeLineRangeYearFormatted(experience.dateBegin, experience.dateEnd)
-                )
-            })
+        viewModel.experienceList.observe(viewLifecycleOwner, Observer { experienceList ->
+            experienceList?.let {
+                viewPagerAdapter.experienceFragmentTab.setExperienceList(it.map { experience ->
+                    TimelineItemDataModel(
+                        experience.job,
+                        experience.company,
+                        experience.description,
+                        getTimeLineRangeYearFormatted(experience.dateBegin, experience.dateEnd)
+                    )
+                })
+            }
         })
 
-        viewModel.studyList.observe(viewLifecycleOwner, Observer {
-            viewPagerAdapter.studyFragmentTab.setStudyList(it.map { study ->
-                TimelineItemDataModel(
-                    study.title,
-                    study.school,
-                    study.description,
-                    getTimeLineRangeYearFormatted(study.dateBegin, study.dateEnd)
-                )
-            })
+        viewModel.studyList.observe(viewLifecycleOwner, Observer { studyList ->
+            studyList?.let {
+                viewPagerAdapter.studyFragmentTab.setStudyList(it.map { study ->
+                    TimelineItemDataModel(
+                        study.title,
+                        study.school,
+                        study.description,
+                        getTimeLineRangeYearFormatted(study.dateBegin, study.dateEnd)
+                    )
+                })
+            }
         })
 
-        viewModel.contactList.observe(viewLifecycleOwner, Observer { contacts ->
-            contactPhone = contacts.first { it.contactType == ContactType.PHONE.type }.value
-            contactEmail = contacts.first { it.contactType == ContactType.EMAIL.type }.value
-            contactGithub = contacts.first { it.contactType == ContactType.GITHUB.type }.value
-            contactLinkedin = contacts.first { it.contactType == ContactType.LINKEDIN.type }.value
+        viewModel.contactList.observe(viewLifecycleOwner, Observer { contactList ->
+            contactList?.let { contacts ->
+                contactPhone = contacts.first { it.contactType == ContactType.PHONE.type }.value
+                contactEmail = contacts.first { it.contactType == ContactType.EMAIL.type }.value
+                contactGithub = contacts.first { it.contactType == ContactType.GITHUB.type }.value
+                contactLinkedin = contacts.first { it.contactType == ContactType.LINKEDIN.type }.value
+            }
         })
     }
 

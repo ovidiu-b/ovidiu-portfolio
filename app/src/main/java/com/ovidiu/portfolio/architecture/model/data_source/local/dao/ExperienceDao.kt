@@ -11,6 +11,6 @@ interface ExperienceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(experienceList: List<Experience>)
 
-    @Query("SELECT * FROM Experience WHERE professionalId=:professionalId")
+    @Query("SELECT * FROM Experience WHERE professionalId=:professionalId ORDER BY dateBegin DESC")
     fun getAllByProfessionalId(professionalId: String): List<Experience>
 }

@@ -22,6 +22,7 @@ import com.ovidiu.portfolio.support.setupSnackbar
 import javax.inject.Inject
 
 class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() {
+
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel by viewModels<ProfessionalViewModel> { viewModelFactory }
@@ -113,11 +114,13 @@ class IntroductionFragment : ViewBindingFragment<FragmentIntroductionBinding>() 
             it?.let { url -> binding.imageIntroduction.asCircle(url) }
         })
 
-        viewModel.contactList.observe(viewLifecycleOwner, Observer { contacts ->
-            contactPhone = contacts.first { it.contactType == ContactType.PHONE.type }.value
-            contactEmail = contacts.first { it.contactType == ContactType.EMAIL.type }.value
-            contactGithub = contacts.first { it.contactType == ContactType.GITHUB.type }.value
-            contactLinkedin = contacts.first { it.contactType == ContactType.LINKEDIN.type }.value
+        viewModel.contactList.observe(viewLifecycleOwner, Observer { contactList ->
+            contactList?.let { contacts ->
+                contactPhone = contacts.first { it.contactType == ContactType.PHONE.type }.value
+                contactEmail = contacts.first { it.contactType == ContactType.EMAIL.type }.value
+                contactGithub = contacts.first { it.contactType == ContactType.GITHUB.type }.value
+                contactLinkedin = contacts.first { it.contactType == ContactType.LINKEDIN.type }.value
+            }
         })
     }
 }

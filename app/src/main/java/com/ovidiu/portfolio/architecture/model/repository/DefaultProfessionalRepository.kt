@@ -111,7 +111,7 @@ class DefaultProfessionalRepository @Inject constructor(
 
                 contactListFromServer?.let { localRepository.insertContactList(it) }
 
-                contactListFromServer
+                localRepository.getContactList(idProfessional)
             } else {
                 contactListFromDB
             }
@@ -126,12 +126,12 @@ class DefaultProfessionalRepository @Inject constructor(
         return withContext(ioDispatcher) {
             val experienceListFromDB = localRepository.getExperienceList(idProfessional)
 
-            experienceListCached = if(experienceListCached.isNullOrEmpty() || professionalLastSyncWasOneHourAgo()) {
+            experienceListCached = if(experienceListFromDB.isNullOrEmpty() || professionalLastSyncWasOneHourAgo()) {
                 val experienceListFromServer = remoteRepository.getExperienceList(idProfessional)
 
                 experienceListFromServer?.let { localRepository.insertExperienceList(it) }
 
-                experienceListFromServer
+                localRepository.getExperienceList(idProfessional)
             } else {
                 experienceListFromDB
             }
@@ -151,7 +151,7 @@ class DefaultProfessionalRepository @Inject constructor(
 
                 studyListFromServer?.let { localRepository.insertStudyList(it) }
 
-                studyListFromServer
+                localRepository.getStudyList(idProfessional)
             } else {
                 studyListFromDB
             }

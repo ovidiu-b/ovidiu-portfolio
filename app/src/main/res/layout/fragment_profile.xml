@@ -40,7 +40,7 @@
                     android:layout_gravity="center_horizontal"
                     android:theme="@style/TextLight"
                     android:textSize="@dimen/title_toolbar"
-                    android:text="PERFIL" />
+                    android:text="@string/profile" />
 
             </com.google.android.material.appbar.MaterialToolbar>
 
@@ -108,17 +108,17 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sobre mí" />
+                    android:text="@string/about_me" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Trabajos" />
+                    android:text="@string/jobs" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Estudios" />
+                    android:text="@string/studies" />
             </com.google.android.material.tabs.TabLayout>
 
             <View

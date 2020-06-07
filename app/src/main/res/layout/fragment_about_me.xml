@@ -52,7 +52,7 @@
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/subtitle_3"
                 android:layout_marginBottom="@dimen/space_between_1"
-                android:text="Stack Tecnológico"/>
+                android:text="@string/technology_stack"/>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
