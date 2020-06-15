@@ -36,8 +36,8 @@ class ProfessionalViewModelUnitTest {
     fun loadProfessionalFromRepository_nameAndSurnameMatches() {
         loadProfessionalFromRepository()
 
-        assertThat(LiveDataTestUtil.getValue(sut.professional).name).isEqualTo(professionalName)
-        assertThat(LiveDataTestUtil.getValue(sut.professional).surname).isEqualTo(professionalSurname)
+        assertThat(LiveDataTestUtil.getValue(sut.professional)?.name).isEqualTo(professionalName)
+        assertThat(LiveDataTestUtil.getValue(sut.professional)?.surname).isEqualTo(professionalSurname)
     }
 
     @Test
@@ -64,10 +64,10 @@ class ProfessionalViewModelUnitTest {
 
         val contactList = LiveDataTestUtil.getValue(sut.contactList)
 
-        val phone = contactList.first { it.contactType == ContactType.PHONE.type }
-        val email = contactList.first { it.contactType== ContactType.EMAIL.type }
-        val github = contactList.first { it.contactType == ContactType.GITHUB.type }
-        val linkedin = contactList.first { it.contactType == ContactType.LINKEDIN.type }
+        val phone = contactList?.first { it.contactType == ContactType.PHONE.type }
+        val email = contactList?.first { it.contactType== ContactType.EMAIL.type }
+        val github = contactList?.first { it.contactType == ContactType.GITHUB.type }
+        val linkedin = contactList?.first { it.contactType == ContactType.LINKEDIN.type }
 
         assertThat(phone).isNotNull()
         assertThat(email).isNotNull()
