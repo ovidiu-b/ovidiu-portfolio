@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "898454920913",
+    "firebase_url": "https://ovidiu-portfolio.firebaseio.com",
+    "project_id": "ovidiu-portfolio",
+    "storage_bucket": "ovidiu-portfolio.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898454920913:android:c18c04159a7da6342eeff0",
+        "android_client_info": {
+          "package_name": "com.ovidiu.portfolio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898454920913-koni51c0i6nha79svdmhc8vbb9bsseft.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAQh1OOlSaepv_Rr8h9ONSLgqDESyhKEjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898454920913-koni51c0i6nha79svdmhc8vbb9bsseft.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
